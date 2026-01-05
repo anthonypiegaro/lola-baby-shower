@@ -5,10 +5,11 @@ import { greatVibes, raleway } from "@/app/layout"
 
 import { Registry } from "./registry"
 import { RSVP } from "./rsvp"
+import { InformationFooter } from "./information-footer"
 
 export default function Home() {
   return (
-    <div className="w-dvw h-dvh grid-background py-10 overflow-x-hidden">
+    <div className="w-dvw h-dvh grid-background pt-10 overflow-x-hidden">
       <div className="w-full overflow-x-hidden flex justify-center px-5">
         <div className="bg-white border-5 border-pink-300/70 rounded-full pb-0 pt-5">
           <EllipticalText />
@@ -40,6 +41,7 @@ export default function Home() {
       </div>
       <Registry />
       <RSVP />
+      <InformationFooter />
     </div> 
   )
 }
