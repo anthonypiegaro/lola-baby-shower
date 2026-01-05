@@ -4,6 +4,7 @@ import { ArrowDown } from "lucide-react"
 import { greatVibes, raleway } from "@/app/layout"
 
 import { Registry } from "./registry"
+import { RSVP } from "./rsvp"
 
 export default function Home() {
   return (
@@ -38,6 +39,7 @@ export default function Home() {
         </div>
       </div>
       <Registry />
+      <RSVP />
     </div> 
   )
 }
