@@ -38,7 +38,7 @@ export function Registry() {
         <div className="relative bg-[oklch(69.317%_0.20402_343.917_/_0.17)] z-1">
           <Gift className="mx-auto h-18 w-18 [stroke-width:0.75] lg:[stroke-width:1.25]" />
           <h2 className="text-center text-3xl lg:text-5xl leading-relaxed mb-3" style={{ fontFamily: "var(--font-great-vibes)" }}>
-            Lola Lynn's Baby Registry
+            Lola Lyn's Baby Registry
           </h2>
           <div className="flex justify-center">
             <a 

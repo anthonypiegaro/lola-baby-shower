@@ -23,7 +23,7 @@ export default function Home() {
           <div className="w-full flex flex-col items-center text-lg -translate-y-18">
             <div className={`${greatVibes.className} text-4xl mb-1`}>Baby Shower</div>
             <div className={`${raleway.className} text-xl mb-3`}>honoring</div>
-            <div className={`${greatVibes.className} text-4xl mb-6`}>Lola Lynn Piegaro</div>
+            <div className={`${greatVibes.className} text-4xl mb-6`}>Lola Lyn Piegaro</div>
             <div className={`${raleway.className} flex flex-col items-center`}>
               <div>Saturday | March 7 | 11am</div>
               <div className="flex flex-col items-center">
@@ -31,6 +31,9 @@ export default function Home() {
                 <div>Yuba City</div>
               </div>
             </div>
+          </div>
+          <div className="text-xs text-muted-foreground text-center -translate-y-12">
+            Given by Jennifer Bennis and Paige Griffin
           </div>
           <div className="flex justify-center -translate-y-10">
             <div className="p-1 rounded-full border">

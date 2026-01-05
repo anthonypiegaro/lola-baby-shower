@@ -24,8 +24,11 @@ export const greatVibes = Great_Vibes({
 });
 
 export const metadata: Metadata = {
-  title: "Lola Lady",
-  description: "Lola Lady's Baby Shower",
+  title: "Lola Lyn's Baby Shower",
+  description: "Initation to Lola Lyn's Baby Shower",
+  other: {
+    "apple-mobile-web-app-title": "Lola Lyn",
+  },
 };
 
 export default function RootLayout({
