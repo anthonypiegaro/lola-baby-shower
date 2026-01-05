@@ -19,6 +19,7 @@ import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Spinner } from "@/components/ui/spinner"
 import { Textarea } from "@/components/ui/textarea"
+import { createRSVP } from "./create-rsvp.action"
 
 export const rsvpSchema = z.object({
   name: z.string().min(1, "name is required"),
@@ -57,9 +58,14 @@ function RSVPForm({
   const onSubmit = async (values: RSVPSchema) => {
     setIsSubmitting(true)
 
-    await new Promise((resolve) => setTimeout(resolve, 2000))
+    await createRSVP(values)
+      .then(() => {
+        onSuccess(values.attending === "Yes" ? true : false)
+      })
+      .catch(e => {
+        console.log(e.message)
+      })
 
-    onSuccess(values.attending === "Yes" ? true : false)
 
     setIsSubmitting(false)
   }

@@ -94,11 +94,20 @@ export const accountRelations = relations(account, ({ one }) => ({
 
 /* Do not edit above. The tables above are used for Auth */
 
+export const rsvp = pgTable("rsvp", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  name: text("name").notNull(),
+  isGoing: boolean("is_going").notNull(),
+  message: text("message").notNull().default(""),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+})
+
 export const schema = {
   user,
   session,
   account,
   verification,
   userRelations,
-  accountRelations
+  accountRelations,
+  rsvp
 }
