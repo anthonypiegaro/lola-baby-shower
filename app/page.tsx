@@ -18,7 +18,7 @@ export default function Home() {
             alt="a silly goose"
             width={250}
             height={250}
-            className="-translate-y-25 mx-auto"
+            className="-translate-y-25 translate-x-4 mx-auto"
           />
           <div className="w-full flex flex-col items-center text-lg -translate-y-18">
             <div className={`${greatVibes.className} text-4xl mb-1`}>Baby Shower</div>
@@ -32,7 +32,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="text-xs text-muted-foreground text-center -translate-y-12">
+          <div className="text-xs text-muted-foreground text-center -translate-y-15">
             Given by Jennifer Bennis and Paige Griffin
           </div>
           <div className="flex justify-center -translate-y-10">
