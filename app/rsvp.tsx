@@ -130,7 +130,7 @@ function RSVPForm({
               control={form.control}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Message</FormLabel>
+                  <FormLabel>Message to the Parents</FormLabel>
                   <FormControl>
                     <Textarea 
                       className="border-2 border-black/20 w-full max-w-full min-w-0 h-50 resize-none mb-2 whitespace-pre-wrap break-words"

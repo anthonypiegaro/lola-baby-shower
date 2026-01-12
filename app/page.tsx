@@ -33,7 +33,7 @@ export default function Home() {
             </div>
           </div>
           <div className="text-xs text-muted-foreground text-center -translate-y-15">
-            Given by Jennifer Bennis and Paige Griffin
+            Given by Renee Baker and Jennifer Bennis
           </div>
           <div className="flex justify-center -translate-y-10">
             <div className="p-1 rounded-full border">
