@@ -38,6 +38,14 @@ export function DetailsDialog({
           <div className="flex items-center gap-x-1 text-muted-foreground">
             {rsvp.isGoing ? <><Check className="w-4 h-4 text-green-600" /> Going</> : <><X className="w-4 h-4 text-red-600" /> Not Going</>}
           </div>
+          {rsvp.guests.length > 0 && (
+            <div>
+              <div>Additional guests:</div>
+              {rsvp.guests.map(guest => (
+                <div key={guest.id}>{guest.name}</div>
+              ))}
+            </div>
+          )}
           <div className="text-lg">
             <div>
               "{rsvp.message}"<br/>-{rsvp.name}

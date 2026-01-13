@@ -10,6 +10,7 @@ const dummyRSVP: RSVP = {
   id: "",
   name: "",
   isGoing: true,
+  guests: [],
   message: "",
   createdAt: new Date()
 }
@@ -30,7 +31,7 @@ export function List({
   if (rsvps.length === 0) {
     return (
       <div className="flex justify-center items-center">
-        <h2 className="text-2xl font-semibold text-center">No RSVPs Yet</h2>
+        <h2 className="text-2xl font-semibold text-center">No RSVPs</h2>
       </div>
     )
   }
@@ -61,6 +62,7 @@ export function List({
                 {rsvp.isGoing ? <Check className="w-4 h-4 text-green-600" /> : <X className="w-4 h-4 text-red-600" />}
                 {rsvp.isGoing ? "Attending" : "Not Attending"}
               </div>
+              {rsvp.guests.length > 0 && <div>plus {rsvp.guests.length} additional guests.</div>}
               <div className="text-xs text-muted-foreground mt-1">
                 RSVP’d on {localDate}
               </div>

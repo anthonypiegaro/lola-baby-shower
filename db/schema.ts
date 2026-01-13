@@ -1,5 +1,5 @@
 import { relations, sql } from "drizzle-orm";
-import { pgTable, text, timestamp, boolean, index, uuid, integer, numeric, date } from "drizzle-orm/pg-core";
+import { pgTable, text, timestamp, boolean, index, uuid } from "drizzle-orm/pg-core";
 
 export const user = pgTable("user", {
   id: text("id").primaryKey(),
@@ -102,6 +102,12 @@ export const rsvp = pgTable("rsvp", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
 })
 
+export const guest = pgTable("guest", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  rsvpId: uuid("rsvp_id").notNull().references(() => rsvp.id, { onDelete: "cascade" }),
+  name: text("name").notNull()
+})
+
 export const schema = {
   user,
   session,
@@ -109,5 +115,6 @@ export const schema = {
   verification,
   userRelations,
   accountRelations,
-  rsvp
+  rsvp,
+  guest
 }

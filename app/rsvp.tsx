@@ -2,7 +2,9 @@
 
 import { useState } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
+import { X } from "lucide-react"
+import { useFieldArray, useForm } from "react-hook-form"
+import { v4 as uuidv4 } from "uuid"
 import { z } from "zod"
 
 import { Button } from "@/components/ui/button"
@@ -19,11 +21,17 @@ import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Spinner } from "@/components/ui/spinner"
 import { Textarea } from "@/components/ui/textarea"
+
 import { createRSVP } from "./create-rsvp.action"
 
 export const rsvpSchema = z.object({
+  uuid: z.uuid(),
   name: z.string().min(1, "name is required"),
   attending: z.enum(["Yes", "No"]),
+  guests: z.array(z.object({
+    uuid: z.uuid(),
+    name: z.string().min(1, "name is required")
+  })),
   message: z.string().optional()
 })
 
@@ -49,10 +57,17 @@ function RSVPForm({
   const form = useForm<RSVPSchema>({
     resolver: zodResolver(rsvpSchema),
     defaultValues: {
+      uuid: uuidv4(),
       name: "",
       attending: "Yes",
+      guests: [],
       message: ""
     }
+  })
+
+  const { fields, append, remove, insert } = useFieldArray({
+    control: form.control,
+    name: "guests"
   })
 
   const onSubmit = async (values: RSVPSchema) => {
@@ -92,7 +107,8 @@ function RSVPForm({
                       {...field} 
                       disabled={isSubmitting}
                       autoComplete="off"
-                      className="max-w-sm border-2 border-black/20" />
+                      className="max-w-sm border-2 border-black/20" 
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -125,6 +141,54 @@ function RSVPForm({
                 </FormItem>
               )}
             />
+            {
+              form.watch("attending") === "Yes" && (
+                <div className="w-full flex flex-col gap-y-2">
+                  <Label className="mb-1">Extra Guests (optional)</Label>
+                  {fields.map((field, index) => (
+                    <div key={field.id} className="flex items-end gap-x-2">
+                      <FormField 
+                        key={field.id}
+                        name={`guests.${index}.name`}
+                        control={form.control}
+                        render={({ field }) => (
+                          <FormItem
+                            className="grow max-w-sm"
+                          >
+                            <FormLabel>Name</FormLabel>
+                            <FormControl>
+                              <Input 
+                                {...field} 
+                                disabled={isSubmitting}
+                                autoComplete="off"
+                                className="w-full border-2 border-black/20" 
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      <Button 
+                        variant="ghost" 
+                        onClick={() => remove(index)}
+                        disabled={isSubmitting}
+                        className="cursor-pointer hover:bg-black/20"
+                      >
+                        <X />
+                      </Button>
+                    </div>
+                  ))}
+                  <Button 
+                    type="button" 
+                    variant="outline"
+                    className="self-start cursor-pointer mt-1 bg-transparent hover:bg-black/10 border-2 border-black/40"
+                    onClick={() => append({ uuid: uuidv4(), name: "" })}
+                  >
+                    Add extra guest
+                  </Button>
+                </div>
+              )
+            }
             <FormField 
               name="message"
               control={form.control}
